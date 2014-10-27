@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load django_markdown %}
+
+{% block content %}
+
+<!doctype html>
+<html>
+	<head>
+		<title> John Pham </title>
+			<link rel = "stylesheet" href = "./stylesheets/stylesheet.css">
+			<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	</head>
+	
+	<body>
+		<div id = "container">
+			<div id = "left_nav">
+				<div id = "bio">
+					<div id = "portrait">
+						 <img class= "photo" src="./images/square.png" style="width:160px;height:240px">
+					</div>
+					<div id = "name">
+						John Pham
+					</div>
+					<div id ="personal_info">
+						Digital Analyst, Yale Graduate, NYC
+						<br>
+						Learner, Experimenter, Adventurer
+					</div>
+				</div>
+				<div id = "categories">
+					<li class = "nav"> Experiences </li>
+					<li class = "nav"> Projects </li>
+					<li class = "nav"> Blog </li>
+					<li class = "nav"> Contact </li>
+				</div>
+			</div>
+			<div id = "right_main">
+				<div id= "body_content">
+					<div class = "entry">
+						<div class= "entry title">
+						John Pham's 1st Post
+						</div>
+
+						{% for object in object_list %}
+	<div class="post">
+		<h2>{{ object.title }}<h2>
+		<p class="meta">
+			{{ object.created }} |
+			Tagged under {{ objects.tag.all}}
+		</p>
+		{{ object.body|markdown}}
+	</div>
+{% endfor %}
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar euismod tempus. Morbi pretium tincidunt nisi vitae interdum. Ut vel dolor at nulla lobortis eleifend. Nam pulvinar imperdiet enim. Sed consectetur venenatis massa. Nunc facilisis quis nunc sit amet sollicitudin. Integer efficitur tempus tincidunt. Quisque euismod mattis nisl, at faucibus mi semper nec.
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+{% endblock %}

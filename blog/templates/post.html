@@ -1,0 +1,43 @@
+{% load django_markdown %}
+{% load staticfiles %}
+
+{% block content %}
+
+<!doctype html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title> John Pham </title>
+			<link rel="stylesheet" media="screen and (min-width: 500px)" href="{% static "blog/stylesheets/stylesheet.css" %}">
+			<link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+			<link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" media="screen and (max-width: 500px)" href="{% static "blog/stylesheets/mobilehome.css" %}">
+	</head>
+	
+	<body>
+		<div id = "container">
+			<div id = "right_main">
+				<div id= "body_content">					
+							<div class = "entry">
+									<div class="entry_title">
+										<h2>
+											<a href="{% url 'entry_detail' slug=object.slug %}">
+											{{ object.title }}</a>
+										</h2>
+									</div>
+									<p class="meta">
+										{{ object.created }}
+									</p>
+									<div clas="post">
+										{{ object.body|markdown}}
+								</div>
+									<a class="return" href="/"> Return to Homepage </a>
+							</div>
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+{% endblock %}

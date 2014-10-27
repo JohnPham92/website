@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load django_markdown %}
+{% load staticfiles %}
+
+{% block content %}
+
+<!doctype html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title> John Pham </title>
+			<link rel="stylesheet" media="screen and (min-width: 480px)" href="{% static "blog/stylesheets/stylesheet.css" %}">
+			<link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+			<link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" media="screen and (max-width: 480px)" href="{% static "blog/stylesheets/mobilehome.css" %}">
+	</head>
+	
+	<body>
+		<div id = "container">
+			<div id = "left_nav">
+				<div id = "bio">
+					<div id = "portrait">
+						 <img class= "photo" src= "{% static "blog/images/square.png" %}" style="width:160px;height:240px">
+					</div>
+					<div id = "name">
+						John Pham
+					</div>
+					<div id ="personal_info">
+						Digital Analyst, Yale Graduate, NYC
+						<br>
+						Data, Experiments, Adventures
+					</div>
+				</div>
+				<div id = "categories">
+					<!-- <li class = "nav"> About </li>
+					<li class = "nav"> Projects </li> -->
+				</div>
+			</div>
+			<div id = "right_main">
+				<div id= "body_content">					
+						{% for object in object_list %}
+							<div class = "entry">
+								<div class= "entry_title">
+									<a href="{{ object.get_absolute_url }}">
+										{{ object.title }}
+									</a>
+								</div>
+								<div>
+									<p class="meta">
+										{{ object.created }}
+									</p>
+								</div>
+								<div class="post">
+									{{ object.body|markdown}}
+								</div>
+							</div>
+						{% endfor %}
+						{% if page_obj.has_previous %}
+				        	<a href="/{{ page_obj.previous_page_number }}/">Previous Page</a>
+				        {% endif %}
+				        {% if page_obj.has_next %}
+				        	<a href="/{{ page_obj.next_page_number }}/">Next Page</a>
+				        {% endif %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+{% endblock %}
