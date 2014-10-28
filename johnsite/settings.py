@@ -36,7 +36,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'blog',
     'django_markdown'
 )
@@ -86,3 +85,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, "templates"),)
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
+
